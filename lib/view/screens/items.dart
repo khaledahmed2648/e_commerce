@@ -73,7 +73,7 @@ class Items extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              '200.0\$',
+                              '200.0\$ zaga',
                               style: TextStyle(
                                   color: AppColors.mainColor,
                                   fontSize: 15,
