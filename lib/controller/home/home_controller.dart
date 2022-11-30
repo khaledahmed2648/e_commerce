@@ -6,13 +6,11 @@ import 'package:ecommerce1/core/services/services.dart';
 import 'package:ecommerce1/data/datasource/remote/home_data.dart';
 import 'package:ecommerce1/data/model/categoriesmodel.dart';
 import 'package:ecommerce1/data/model/itemsmodel.dart';
-import 'package:ecommerce1/data/test_data.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart'as dio;
-import '../core/functions/functions.dart';
 abstract class HomeController extends GetxController{
   getHomeData();
-  goToItems(int catNumber);
+  goToItems(int catNumber,);
 }
 class HomeControllerImp extends HomeController{
   statusRequest statusrequest=statusRequest.initialState;
@@ -35,7 +33,7 @@ print('helleo');
     print('hello');
     dio.Response response=await HomeData.getHomeData();
 print('-=================done ======================');
-    print(response.data);
+
     if(jsonDecode(response.data)['status']=='success'){
       jsonDecode(response.data)['categories'].forEach((element) {
         categories.add(CategoriesModel.fromJson(element));
@@ -43,10 +41,9 @@ print('-=================done ======================');
       jsonDecode(response.data)['items'].forEach((element) {
         items.add(ItemsModel.fromJson(element));
       });
-      print(categories);
-      print(items);
 
       statusrequest=statusRequest.success;
+    print(items);
     }
     else{
       print('-=================done two ======================');

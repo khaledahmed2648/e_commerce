@@ -9,6 +9,7 @@ import 'package:ecommerce1/view/screens/Auth/forgetpassword/resetpassword.dart';
 import 'package:ecommerce1/view/screens/Auth/forgetpassword/resetpasswordsuccess.dart';
 import 'package:ecommerce1/view/screens/Auth/signup.dart';
 import 'package:ecommerce1/view/screens/homescreen.dart';
+import 'package:ecommerce1/view/screens/itemdetails.dart';
 import 'package:ecommerce1/view/screens/items.dart';
 import 'package:ecommerce1/view/screens/language.dart';
 
@@ -31,4 +32,5 @@ List<GetPage<dynamic>>? routes=[
   GetPage(name:AppRoutes.successsignup,page:()=>const SuccessSignUp() ),
   GetPage(name:AppRoutes.signupverificationcode,page:()=> SignUpVerificationCode() ),
   GetPage(name:AppRoutes.items,page:()=> Items() ),
+  GetPage(name:AppRoutes.itemdetails,page:()=> ItemDetails() ),
 ];

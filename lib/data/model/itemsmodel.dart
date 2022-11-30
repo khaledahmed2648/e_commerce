@@ -34,6 +34,7 @@ class ItemsModel{
    String? categories_name_ar;
    String? categories_image;
    String? categories_time;
+   String? favorite;
    ItemsModel.fromJson(Map<String,dynamic> json){
      items_id          =json['items_id'];
      items_name        =json['items_name'];
@@ -52,5 +53,6 @@ class ItemsModel{
      categories_name_ar=json['categories_name_ar'];
      categories_image  =json['categories_image'];
      categories_time   =json['categories_time'];
+     favorite   =json['favorites'].toString();
    }
 }

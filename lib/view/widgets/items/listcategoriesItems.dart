@@ -1,10 +1,10 @@
-import 'package:ecommerce1/controller/itemscontroller.dart';
 import 'package:ecommerce1/data/model/categoriesmodel.dart';
 import 'package:flutter/material.dart';
 
-import '../../../LinkAPI.dart';
-import '../../../core/constant/color.dart';
+import '../../../../core/constant/color.dart';
 import 'package:get/get.dart';
+
+import '../../../controller/items/itemscontroller.dart';
 
 class ListCategoriesItems extends GetView<ItemsControllerImp> {
   void Function()? onTap;

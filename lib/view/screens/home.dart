@@ -1,5 +1,4 @@
 import 'package:ecommerce1/LinkAPI.dart';
-import 'package:ecommerce1/controller/home_controller.dart';
 import 'package:ecommerce1/core/constant/color.dart';
 import 'package:ecommerce1/view/widgets/home/costumappbarhome.dart';
 import 'package:ecommerce1/view/widgets/home/costumcardhome.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../controller/home/home_controller.dart';
 import '../widgets/home/listcategorieshome.dart';
 
 class Home extends StatelessWidget {
