@@ -1,4 +1,4 @@
-class ItemsModel {
+class CardItemsModel {
   // "items_id": 4,
   // "items_name": "laptop hp 7 celipration",
   // "items_name_ar": "لابتوب اتش بي الجيل السابع",
@@ -25,7 +25,7 @@ class ItemsModel {
   int? items_count;
   int? items_active;
   int? items_price;
-  late int items_discound;
+  int? items_discound;
   String? items_date;
   int? items_cat;
   int? categories_id;
@@ -33,14 +33,15 @@ class ItemsModel {
   String? categories_name_ar;
   String? categories_image;
   String? categories_time;
-  ItemsModel.fromJson(Map<String, dynamic> json) {
+  String? favorite;
+  CardItemsModel.fromJson(Map<String, dynamic> json) {
     items_id = json['items_id'];
     items_name = json['items_name'];
     items_name_ar = json['items_name_ar'];
     items_desc = json['items_desc'];
     items_desc_ar = json['items_desc_ar'];
     items_image = json['items_image'];
-    items_count = json['items_count'];
+    items_count = json['cards_itemcount'];
     items_active = json['items_active'];
     items_price = json['items_price'];
     items_discound = json['items_discound'];
@@ -51,5 +52,6 @@ class ItemsModel {
     categories_name_ar = json['categories_name_ar'];
     categories_image = json['categories_image'];
     categories_time = json['categories_time'];
+    favorite = json['favorites'].toString();
   }
 }

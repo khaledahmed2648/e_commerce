@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/items/itemscontroller.dart';
+import '../../core/constant/routes.dart';
 import '../widgets/home/costumappbarhome.dart';
 
 class Items extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(15),
@@ -20,16 +22,21 @@ class Items extends StatelessWidget {
           builder: (controller) => ListView(
             children: [
               CostumAppBarHome(
-                  onPressedNotification: () {}, hintText: 'Find your products'),
+                  onPressedFavorite: () {
+                    Get.toNamed(AppRoutes.favoritesscreen);
+                  },
+                  onPressedNotification: () {},
+                  hintText: 'Find your products'),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 height: 70,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => ListCategoriesItems(
-                      onTap: ()async {
+                      onTap: () async {
                         controller.changeCategory(index);
-                      await controller.getItems(controller.categories[index].categories_id!);
+                        await controller.getItems(
+                            controller.categories[index].categories_id!);
                       },
                       categories: controller.categories[index],
                       catNumber: index),

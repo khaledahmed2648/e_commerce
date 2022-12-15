@@ -1,48 +1,41 @@
 import 'package:ecommerce1/view/screens/home.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce1/view/widgets/Orders.dart';
+import 'package:ecommerce1/view/widgets/categories.dart';
+import 'package:ecommerce1/view/widgets/profile.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-abstract class HomeScreenController extends GetxController{
+
+abstract class HomeScreenController extends GetxController {
   changePage(int i);
 }
-class HomeScreenControllerImp extends HomeScreenController{
-  int currentPage=0;
-  List<String> bottomAppBarTitle=[
+
+class HomeScreenControllerImp extends HomeScreenController {
+  int currentPage = 0;
+  List<IconData> bottomAppBarIcons = [
+    Icons.home,
+    Icons.person,
+    Icons.home,
+    Icons.category,
+    Icons.badge_outlined
+  ];
+  List<String> bottomAppBarTitle = [
     'Home',
     'Profile',
     '',
-    'Favorites',
-    'Settings'
+    'Categories',
+    'Orders'
   ];
-  List<Widget> listPage=[
+  List<Widget> listPage = [
     const Home(),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:const [
-         Center(child: Text('Profile'),)
-      ],
-    ),
+    Profile(),
     Container(),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:const [
-         Center(child: Text('Favorites'),)
-      ],
-    ),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:const [
-         Center(child: Text('Settings'),)
-      ],
-    ),
+    Categories(),
+    Orders(),
   ];
   @override
   @override
   changePage(int i) {
-    currentPage=i;
+    currentPage = i;
     update();
   }
-  }
-
-
-
-
+}

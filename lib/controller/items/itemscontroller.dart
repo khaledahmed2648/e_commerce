@@ -6,10 +6,10 @@ import 'package:ecommerce1/core/services/services.dart';
 import 'package:ecommerce1/data/model/categoriesmodel.dart';
 import 'package:ecommerce1/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart'as dio;
+import 'package:dio/dio.dart' as dio;
 
 import '../../data/datasource/remote/items_data.dart';
-
+import '../favorite_controller.dart';
 
 abstract class ItemsController extends GetxController {
   changeCategory(int i);
@@ -19,12 +19,11 @@ abstract class ItemsController extends GetxController {
 }
 
 class ItemsControllerImp extends ItemsController {
-   int catNumber=0;
-   int categoryId=0;
-   statusRequest statusrequest=statusRequest.initialState;
-
-   List<CategoriesModel> categories=[];
-   List<ItemsModel>items=[];
+  int catNumber = 0;
+  int categoryId = 0;
+  statusRequest statusrequest = statusRequest.initialState;
+  List<CategoriesModel> categories = [];
+  List<ItemsModel> items = [];
 
   @override
   changeCategory(int i) {
@@ -33,39 +32,38 @@ class ItemsControllerImp extends ItemsController {
   }
 
   @override
-  initialData()async{
-    categories=Get.arguments['categories'];
-    catNumber=Get.arguments['catNumber'];
-    categoryId=categories[catNumber].categories_id!;
+  initialData() async {
+    categories = Get.arguments['categories'];
+    catNumber = Get.arguments['catNumber'];
+    categoryId = categories[catNumber].categories_id!;
     await getItems(categoryId);
   }
+
   @override
-  void onInit()async {
-   await initialData();
+  void onInit() async {
+    await initialData();
   }
-  
+
   @override
-  getItems(categoryId)async {
-  statusrequest=statusRequest.loading;
-  items=[];
-  dio.Response response=await ItemsData.getItemsData(categoryId.toString(),MyServices.sharedPreferences.getString('id')!);
-  if(jsonDecode(response.data)['status']=='success'){
-    jsonDecode(response.data)['data'].forEach((element){
-      items.add(ItemsModel.fromJson(element));
-    });
-    statusrequest=statusRequest.success;
-    print(items);
+  getItems(categoryId) async {
+    statusrequest = statusRequest.loading;
+    items = [];
+    dio.Response response = await ItemsData.getItemsData(
+        categoryId.toString(), MyServices.sharedPreferences.getString('id')!);
+    if (jsonDecode(response.data)['status'] == 'success') {
+      jsonDecode(response.data)['data'].forEach((element) {
+        items.add(ItemsModel.fromJson(element));
+      });
+      statusrequest = statusRequest.success;
+      print(items);
+    } else {
+      statusrequest = statusRequest.serverFailure;
+    }
+    update();
   }
-  else{
-    statusrequest=statusRequest.serverFailure;
-  }
-  update();
-  }
-  
+
   @override
   gotoItemDetails(ItemsModel itemsModel) {
-  Get.toNamed(AppRoutes.itemdetails,arguments: {
-    'itemModel':itemsModel
-  });
+    Get.toNamed(AppRoutes.itemdetails, arguments: {'itemModel': itemsModel});
   }
 }

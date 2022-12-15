@@ -1,4 +1,6 @@
+import 'package:ecommerce1/controller/card/card.dart';
 import 'package:ecommerce1/core/constant/color.dart';
+import 'package:ecommerce1/core/constant/routes.dart';
 import 'package:ecommerce1/view/widgets/home/costumbottombarhome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,11 +13,32 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeScreenControllerImp());
+    CardControllerImp cardControllerImp = Get.put(CardControllerImp());
     return GetBuilder<HomeScreenControllerImp>(
       builder: ((controller) => Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.shopping_basket_rounded),
+            floatingActionButton: GetBuilder<CardControllerImp>(
+              builder: (controller) => Stack(
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.card);
+                    },
+                    child: const Icon(Icons.shopping_basket_rounded),
+                  ),
+                  if (cardControllerImp.itemsCount > 0)
+                    Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                            color:
+                                Color.fromARGB(255, 13, 14, 14).withOpacity(.3),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          '${cardControllerImp.itemsCount}',
+                          style: const TextStyle(color: Colors.white),
+                        )),
+                ],
+              ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
@@ -24,18 +47,19 @@ class HomeScreen extends StatelessWidget {
               notchMargin: 10,
               child: Row(
                 children: [
-                  ...List.generate(controller.listPage.length, (index){
-                    if(index==2){
+                  ...List.generate(controller.listPage.length, (index) {
+                    if (index == 2) {
                       return const Spacer();
-                    }
-                    else{
+                    } else {
                       return CustomBottomBarItemHome(
                         onPressed: () {
                           controller.changePage(index);
                         },
-                        iconItem: Icons.home,
+                        iconItem: controller.bottomAppBarIcons[index],
                         textItem: controller.bottomAppBarTitle[index],
-                        selectedItemColor:controller.currentPage==index?AppColors.mainColor:null ,
+                        selectedItemColor: controller.currentPage == index
+                            ? AppColors.mainColor
+                            : null,
                       );
                     }
                   })
