@@ -20,11 +20,7 @@ class CardControllerImp extends CardController {
   int itemsCount = 0;
 
   @override
-  void onInit() {
-    super.onInit();
-    // TODO: implement onInit
-    getCardItems();
-  }
+  void onInit() {}
 
   @override
   deleteFromCard({required String cardsItemId}) async {
@@ -61,6 +57,8 @@ class CardControllerImp extends CardController {
 
   @override
   getCardItems() async {
+    print(MyServices.sharedPreferences.getString('id'));
+    print(MyServices.sharedPreferences.getInt('cards_number'));
     statusrequest = statusRequest.loading;
     items = [];
     itemsCount = 0;
@@ -75,6 +73,8 @@ class CardControllerImp extends CardController {
       for (int i = 0; i < items.length; i++) {
         itemsCount = itemsCount + items[i].items_count!;
       }
+      update();
+
       print(itemsCount);
       print(items.length);
       statusrequest = statusRequest.success;

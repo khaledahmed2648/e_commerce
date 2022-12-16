@@ -25,7 +25,8 @@ import 'core/mainmiddleware/mainmiddleware.dart';
 
 List<GetPage<dynamic>>? routes = [
   // GetPage(name: '/',page:()=>const TestView()),
-  GetPage(name: '/', page: () => const Home(), middlewares: [MainMiddleWare()]),
+  GetPage(
+      name: '/', page: () => const Language(), middlewares: [MainMiddleWare()]),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.onBoarding, page: () => OnBoarding()),
   GetPage(name: AppRoutes.card, page: () => const CardScreen()),

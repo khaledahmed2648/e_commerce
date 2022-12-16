@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class CostumAppBarHome extends StatelessWidget {
   String hintText;
-  void Function()? onPressedNotification;
+  void Function()? onPressedSettings;
   void Function()? onPressedFavorite;
   CostumAppBarHome(
-      {required this.onPressedNotification,
+      {required this.onPressedSettings,
       required this.onPressedFavorite,
       required this.hintText});
   @override
@@ -48,9 +48,9 @@ class CostumAppBarHome extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.primaryColor),
               child: IconButton(
-                  onPressed: onPressedNotification,
+                  onPressed: onPressedFavorite,
                   icon: Icon(
-                    Icons.notifications_active_outlined,
+                    Icons.favorite_outline_sharp,
                     color: Colors.grey[600],
                   )),
             ),
@@ -63,12 +63,12 @@ class CostumAppBarHome extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.primaryColor),
               child: IconButton(
-                  onPressed: onPressedFavorite,
+                  onPressed: onPressedSettings,
                   icon: Icon(
-                    Icons.favorite_outline_sharp,
+                    Icons.settings,
                     color: Colors.grey[600],
                   )),
-            )
+            ),
           ],
         ),
       ],

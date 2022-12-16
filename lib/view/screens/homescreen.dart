@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeScreenControllerImp());
     CardControllerImp cardControllerImp = Get.put(CardControllerImp());
+    cardControllerImp.getCardItems();
     return GetBuilder<HomeScreenControllerImp>(
       builder: ((controller) => Scaffold(
             floatingActionButton: GetBuilder<CardControllerImp>(

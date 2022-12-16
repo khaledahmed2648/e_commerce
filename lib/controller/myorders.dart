@@ -23,6 +23,7 @@ class MyOrdersControllerImp extends MyOrdersController {
   @override
   getMyOrders() async {
     statusrequest = statusRequest.loading;
+    update();
     dio.Response response = await BillData.getBill();
     print(jsonDecode(response.data));
 
@@ -32,6 +33,8 @@ class MyOrdersControllerImp extends MyOrdersController {
       });
 
       statusrequest = statusRequest.success;
+      update();
+
       print(jsonDecode(response.data)['data']);
     } else {
       print(jsonDecode(response.data));

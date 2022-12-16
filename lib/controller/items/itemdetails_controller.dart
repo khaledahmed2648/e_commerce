@@ -19,7 +19,9 @@ class ItemDetailsControllerImp extends ItemDetailsController {
 
   @override
   void onInit() async {
-    super.onInit();
+    if (MyServices.sharedPreferences.getInt('cards_number') == null) {
+      MyServices.sharedPreferences.setInt('cards_number', 0);
+    }
     itemsModel = Get.arguments['itemModel'];
     itemsModel.items_count = itemCount;
     dio.Response response = await CardData.getItemFromCarddata(

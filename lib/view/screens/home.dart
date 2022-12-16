@@ -1,6 +1,7 @@
 import 'package:ecommerce1/LinkAPI.dart';
 import 'package:ecommerce1/controller/card/card.dart';
 import 'package:ecommerce1/core/constant/color.dart';
+import 'package:ecommerce1/view/screens/settingsscreen.dart';
 import 'package:ecommerce1/view/widgets/home/costumappbarhome.dart';
 import 'package:ecommerce1/view/widgets/home/costumcardhome.dart';
 import 'package:ecommerce1/view/widgets/home/customtitlehome.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../controller/home/home_controller.dart';
 import '../../controller/favorite_controller.dart';
 import '../../core/constant/routes.dart';
+import '../../core/services/services.dart';
 import '../widgets/home/listcategorieshome.dart';
 
 class Home extends StatelessWidget {
@@ -33,7 +35,10 @@ class Home extends StatelessWidget {
                   onPressedFavorite: () {
                     controller.goToFavorites();
                   },
-                  onPressedNotification: () {},
+                  onPressedSettings: () {
+                    Get.to(Settings());
+                    print(MyServices.sharedPreferences.getString('id'));
+                  },
                   hintText: 'Find your product'),
               const SizedBox(
                 height: 20,

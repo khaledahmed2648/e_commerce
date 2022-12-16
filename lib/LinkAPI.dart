@@ -1,5 +1,5 @@
 class ApiLink {
-  static const String server = "http://10.0.2.2/ecommerce";
+  static const String server = "http://192.168.1.3/ecommerce";
   static const String test = "$server/test.php";
 // ================Auth===========
   static const String signUp = "$server/auth/signup.php";

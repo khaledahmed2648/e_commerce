@@ -11,9 +11,13 @@ class MainMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (MyServices.sharedPreferences.getBool('onBoarding') == true) {
+      if (MyServices.sharedPreferences.getBool('homePage') == true) {
+                return const RouteSettings(name: AppRoutes.home);
 
-        return const RouteSettings(name: AppRoutes.home);
-     
+      } else {
+                return const RouteSettings(name: AppRoutes.login);
+
+      }
     }
   }
 }

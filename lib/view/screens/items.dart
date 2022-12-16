@@ -1,5 +1,6 @@
 import 'package:ecommerce1/LinkAPI.dart';
 import 'package:ecommerce1/core/constant/color.dart';
+import 'package:ecommerce1/view/screens/settingsscreen.dart';
 import 'package:ecommerce1/view/widgets/items/listcategoriesItems.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce1/view/widgets/items/listitemsItems.dart';
@@ -25,7 +26,9 @@ class Items extends StatelessWidget {
                   onPressedFavorite: () {
                     Get.toNamed(AppRoutes.favoritesscreen);
                   },
-                  onPressedNotification: () {},
+                  onPressedSettings: () {
+                    Get.to(Settings());
+                  },
                   hintText: 'Find your products'),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
